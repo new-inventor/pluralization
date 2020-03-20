@@ -1,0 +1,14 @@
+{
+  "name": "smart_pluralization",
+  "version": "1.0.0",
+  "description": "Smart pluralisation for russian and english words can be extended by another languages",
+  "main": "index.js",
+  "repository": "https://github.com/new-inventor/smart_pluralization",
+  "author": "George Ionov <newinventor20@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^3.8.3"
+  }
+}
