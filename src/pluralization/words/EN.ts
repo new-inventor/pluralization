@@ -1,4 +1,4 @@
-import {Word} from './Word';
+import { Word } from './Word';
 
 export class EN extends Word {
   public readonly rule: Array<(value: number) => boolean> = [

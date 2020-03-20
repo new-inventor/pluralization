@@ -30,7 +30,6 @@
         "esSpecCompliant": true
       }
     ],
-    "no-string-literal": false,
-    "max-line-length": false
+    "no-string-literal": false
   }
 }

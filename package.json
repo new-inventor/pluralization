@@ -1,14 +1,42 @@
 {
-  "name": "smart_pluralization",
+  "name": "smart-pluralization",
   "version": "1.0.0",
   "description": "Smart pluralisation for russian and english words can be extended by another languages",
+  "keywords": [
+    "pluralization",
+    "pluralisation",
+    "plural",
+    "pluralize",
+    "pluralise"
+  ],
   "main": "index.js",
-  "repository": "https://github.com/new-inventor/smart_pluralization",
+  "scripts": {
+    "setup": "yarn install",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/new-inventor/smart_pluralization"
+  },
   "author": "George Ionov <newinventor20@gmail.com>",
   "license": "MIT",
   "private": false,
-  "dependencies": {},
+  "bugs": {
+    "url": "https://github.com/new-inventor/smart_pluralization/issues"
+  },
+  "homepage": "https://github.com/new-inventor/smart_pluralization#readme",
+  "dependencies": {
+    "data_types": "E:\\projects\\front-end\\plugins\\data_types",
+    "lodash": "^4.17.15"
+  },
   "devDependencies": {
+    "@types/lodash": "^4.14.149",
+    "tslint": "^6.1.0",
     "typescript": "^3.8.3"
-  }
+  },
+  "files": [
+    "lib/**/*"
+  ]
 }

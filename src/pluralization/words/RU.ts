@@ -1,5 +1,5 @@
-import {Word} from './Word';
-import {IDictionary} from '../Dictionary';
+import { Word } from './Word';
+import { IDictionary } from '../Dictionary';
 
 export enum Modifier {
   NOMINATIVE = 'nominative',
@@ -16,13 +16,13 @@ export enum Modifier {
 export class RU extends Word {
   public readonly rule: Array<(value: number) => boolean> = [
     (value: number) => {
-      return (value % 10) === 1;
+      return value % 10 === 1;
     },
     (value: number) => {
-      return (value % 10) >= 2;
+      return value % 10 >= 2;
     },
     (value: number) => {
-      return (value % 10) >= 5 || (value % 10) === 0 || (value > 10 && value < 20);
+      return value % 10 >= 5 || value % 10 === 0 || (value > 10 && value < 20);
     },
   ];
 

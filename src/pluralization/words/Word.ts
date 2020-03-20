@@ -6,14 +6,13 @@ export interface IWord {
 
 export interface IRawWord {
   base: string;
-  cases?: {[index: string]: string []};
+  cases?: { [index: string]: string[] };
 }
 
 export abstract class Word implements IWord {
   public readonly rule: Array<(value: number) => boolean> = [];
 
-  protected constructor(public readonly base: string) {
-  }
+  protected constructor(public readonly base: string) {}
 
   public pluralise(count: number, ...params: any[]): string {
     return this.getWord(count, ...params);

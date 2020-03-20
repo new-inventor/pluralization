@@ -1,4 +1,4 @@
-import {ObjectHelper, ObjectKey} from '@/helpers/ObjectHelper';
+import forOwn from 'lodash/forOwn';
 
 export interface IDictionary<T> {
   readonly length: number;
@@ -14,19 +14,19 @@ export interface IDictionary<T> {
    * @param key
    * @param value
    */
-  set(key: ObjectKey, value: T): Dictionary<T>;
+  set(key: string | number, value: T): Dictionary<T>;
 
   /**
    * Test key for existence
    * @param key
    */
-  has(key: ObjectKey): boolean;
+  has(key: string | number): boolean;
 
   /**
    * Gets key from dictionary
    * @param key
    */
-  get(key: ObjectKey): T;
+  get(key: string | number): T;
 
   /**
    * Returns key in specific index
@@ -49,7 +49,7 @@ export interface IDictionary<T> {
   /**
    * Returns dictionary names
    */
-  keys(): ObjectKey[];
+  keys(): (string | number)[];
 
   /**
    * Returns array of dictionary values
@@ -65,20 +65,20 @@ export interface IDictionary<T> {
    * Iterates items one by one using the callback function. To break forEach return null from callback function.
    * @param callback
    */
-  forEach(callback: (value: T, name: ObjectKey, index: number) => void): void;
+  forEach(callback: (value: T, name: string | number, index: number) => void): void;
 
   /**
    * Return first occurrence in dictionary that satisfy the callback function. In format {name: <name>, value: T}
    * @param callback
    */
-  find(callback: (value: T, name: ObjectKey) => boolean): T | null;
+  find(callback: (value: T, name: string | number) => boolean): T | null;
 
   /**
    * Filters items in dictionary and returns new DictionaryInterface<T> with elements that satisfy the callback function
    *
    * @param callback - Must return true if element matched
    */
-  filter(callback: (value: T, name: ObjectKey) => boolean): Dictionary<T>;
+  filter(callback: (value: T, name: string | number) => boolean): Dictionary<T>;
 }
 
 export class Dictionary<T> implements IDictionary<T> {
@@ -86,17 +86,17 @@ export class Dictionary<T> implements IDictionary<T> {
   // tslint:disable-next-line:variable-name
   protected _length = 0;
 
-  constructor(values: {[index: string]: T} = {}) {
+  constructor(values: { [index: string]: T } = {}) {
     this.load(values);
   }
 
   public load(items: { [index: string]: T }): void {
     if (items) {
-      ObjectHelper.forEach(items, (condition: T, key: ObjectKey) => this.set(key, condition));
+      forOwn(items, (condition: T, key: string | number) => this.set(key, condition));
     }
   }
 
-  public set(key: ObjectKey, value: T): Dictionary<T> {
+  public set(key: string | number, value: T): Dictionary<T> {
     if (!this.items.hasOwnProperty(key)) {
       this._length++;
     }
@@ -105,7 +105,7 @@ export class Dictionary<T> implements IDictionary<T> {
     return this as Dictionary<T>;
   }
 
-  public has(key: ObjectKey): boolean {
+  public has(key: string | number): boolean {
     return this.items.hasOwnProperty(key);
   }
 
@@ -113,14 +113,14 @@ export class Dictionary<T> implements IDictionary<T> {
     return this._length;
   }
 
-  public get(key: ObjectKey): T {
+  public get(key: string | number): T {
     return this.items[key];
   }
 
   public getKeyByIndex(index: number): string | null {
     let i = -1;
-    let res: ObjectKey | null = null;
-    this.forEach((value: T, name: ObjectKey) => {
+    let res: string | number | null = null;
+    this.forEach((value: T, name: string | number) => {
       if (++i === index) {
         res = name;
         return null;
@@ -151,9 +151,9 @@ export class Dictionary<T> implements IDictionary<T> {
     return this as Dictionary<T>;
   }
 
-  public keys(): ObjectKey[] {
-    const keySet: ObjectKey[] = [];
-    ObjectHelper.forEach(this.items, (item: T, key: ObjectKey) => {
+  public keys(): (string | number)[] {
+    const keySet: (string | number)[] = [];
+    forOwn(this.items, (item: T, key: string | number) => {
       keySet.push(key);
     });
 
@@ -162,7 +162,7 @@ export class Dictionary<T> implements IDictionary<T> {
 
   public values(): T[] {
     const values: T[] = [];
-    ObjectHelper.forEach(this.items, (item: T) => {
+    forOwn(this.items, (item: T) => {
       values.push(item);
     });
 
@@ -174,16 +174,16 @@ export class Dictionary<T> implements IDictionary<T> {
     this._length = 0;
   }
 
-  public forEach(callback: (value: T, name: ObjectKey, index: number) => void) {
+  public forEach(callback: (value: T, name: string | number, index: number) => void) {
     let i = 0;
-    ObjectHelper.forEach(this.items, (item: T, key: ObjectKey) => {
+    forOwn(this.items, (item: T, key: string | number) => {
       return callback(item, key, i++);
     });
   }
 
-  public find(callback: (value: T, name: ObjectKey) => boolean): T | null {
+  public find(callback: (value: T, name: string | number) => boolean): T | null {
     let res = null;
-    ObjectHelper.forEach(this.items, (value: T, name: ObjectKey) => {
+    forOwn(this.items, (value: T, name: string | number) => {
       if (callback(value, name)) {
         res = value;
         return null;
@@ -192,9 +192,9 @@ export class Dictionary<T> implements IDictionary<T> {
     return res;
   }
 
-  public filter(callback: (value: T, name: ObjectKey) => boolean): Dictionary<T> {
+  public filter(callback: (value: T, name: string | number) => boolean): Dictionary<T> {
     const res: { [index: string]: T } = {};
-    this.forEach((value: T, name: ObjectKey) => {
+    this.forEach((value: T, name: string | number) => {
       if (callback(value, name)) {
         res[name] = value;
       }

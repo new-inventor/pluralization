@@ -1,9 +1,8 @@
-import {Dictionary} from './Dictionary';
-import {Singleton} from '@/models/Singleton';
-import {ObjectHelper, ObjectKey} from '@/helpers/ObjectHelper';
-import {IRawWord, IWord} from './words/Word';
-import {LocaleName, locales} from './Locales';
-
+import { Dictionary } from './Dictionary';
+import { Singleton } from 'data_types/Singleton';
+import { IRawWord, IWord } from './words/Word';
+import { LocaleName, locales } from './Locales';
+import forOwn from 'lodash/forOwn';
 
 export interface IWordsList {
   load(words: { [index: string]: any }): void;
@@ -11,7 +10,6 @@ export interface IWordsList {
   remove(wordName: string): IWord;
   get(word: string): IWord;
 }
-
 
 export class WordsList extends Singleton implements IWordsList {
   private words: Dictionary<IWord> = new Dictionary<IWord>();
@@ -24,7 +22,7 @@ export class WordsList extends Singleton implements IWordsList {
   }
 
   public load(words: { [index: string]: IRawWord }) {
-    ObjectHelper.forEach(words, (word: IRawWord, key: ObjectKey) => {
+    forOwn(words, (word: IRawWord, key: string | number) => {
       this.add(key as string, new locales[this.locale](word.base, new Dictionary(word.cases)));
     });
   }
