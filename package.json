@@ -7,14 +7,22 @@
     "pluralisation",
     "plural",
     "pluralize",
-    "pluralise"
+    "pluralise",
+    "ending",
+    "плюрализация",
+    "числительные",
+    "окончания",
+    "word",
+    "words",
+    "слово"
   ],
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "setup": "yarn install",
     "build": "tsc",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "tslint -p tsconfig.json"
+    "eslint:lint": "eslint ./src/**",
+    "eslint:fix": "eslint --fix ./src/**",
+    "eslint:dump": "eslint --print-config ./.eslintrc.json"
   },
   "repository": {
     "type": "git",
@@ -33,7 +41,9 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.149",
-    "tslint": "^6.1.0",
+    "@typescript-eslint/eslint-plugin": "^2.28.0",
+    "@typescript-eslint/parser": "^2.28.0",
+    "eslint": "^6.8.0",
     "typescript": "^3.8.3"
   },
   "files": [

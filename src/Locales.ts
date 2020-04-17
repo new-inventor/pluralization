@@ -1,5 +1,5 @@
-import { RU } from './words/RU';
-import { EN } from './words/EN';
+import {RU} from './locales/RU';
+import {EN} from './locales/EN';
 
 export enum LocaleName {
   RU = 'RU',
