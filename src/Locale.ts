@@ -1,4 +1,4 @@
-export abstract class Locale {
+export default abstract class Locale {
   public readonly rule: Array<(value: number) => boolean> = [];
 
   public pluralize(word: string, count: number, ...params: unknown[]): string {
