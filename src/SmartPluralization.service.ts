@@ -14,8 +14,8 @@ export default class SmartPluralizationService {
   protected constructor(public currentLocale: string, public locales: { [index: string]: Locale } = {}) {
   }
 
-  public pluralize = (word: string, value: number, params: any[], locale: string = this.currentLocale): string => {
-    return this.locales[locale].pluralize(word, value, params);
+  public pluralize = (word: string, value: number, ...params: unknown[]): string => {
+    return this.locales[this.currentLocale].pluralize(word, value, params);
   };
 
   public pluralizeTemplate = (template: string, value: number, locale: string = this.currentLocale): string => {

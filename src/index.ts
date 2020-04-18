@@ -1,2 +1,2 @@
-import SmartPluralizationService from './Pluralization.service'
-import locales from "./Locales";
+export * from './SmartPluralization.service';
+export * from './locales';

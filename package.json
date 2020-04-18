@@ -1,5 +1,5 @@
 {
-  "name": "smart-pluralization",
+  "name": "@new-inventor/smart-pluralization",
   "version": "1.0.0",
   "description": "Smart pluralisation for russian and english words can be extended by another languages",
   "keywords": [
@@ -16,10 +16,12 @@
     "words",
     "слово"
   ],
-  "main": "lib/index.js",
+  "main": "index.js",
   "scripts": {
     "setup": "yarn install",
     "build": "tsc",
+    "clear": "node bin/clear.js",
+    "pack": "npm run eslint:lint && npm run clear && npm run build && node bin/pack_package.js",
     "eslint:lint": "eslint ./src/**",
     "eslint:fix": "eslint --fix ./src/**",
     "eslint:dump": "eslint --print-config ./.eslintrc.json"
@@ -36,7 +38,6 @@
   },
   "homepage": "https://github.com/new-inventor/smart_pluralization#readme",
   "dependencies": {
-    "data_types": "E:\\projects\\front-end\\plugins\\data_types",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
@@ -44,9 +45,11 @@
     "@typescript-eslint/eslint-plugin": "^2.28.0",
     "@typescript-eslint/parser": "^2.28.0",
     "eslint": "^6.8.0",
+    "rimraf": "^3.0.2",
     "typescript": "^3.8.3"
   },
   "files": [
-    "lib/**/*"
+    "./locales/*",
+    "*"
   ]
 }

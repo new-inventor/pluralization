@@ -1,6 +1,6 @@
 import reduce from 'lodash/reduce';
 
-export class StringHelper {
+export default class StringHelper {
   public static replacePlaceholders(template: string, placeholders: { [index: string]: string }): string {
     return reduce(
       placeholders,

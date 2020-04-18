@@ -18,8 +18,8 @@ module.exports = {
   },
   plugins: ["@typescript-eslint"],
   rules: {
-    // 'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    // 'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-console': 'error',
+    'no-debugger': 'error',
     'indent': ['error', 2],
     'no-multiple-empty-lines': ['warn', {max: 2, maxBOF: 0, maxEOF: 1}],
     'sort-keys': 'off',

@@ -4,7 +4,7 @@ export interface RawWordsList<T> {
   [index: string]: T;
 }
 
-export class WordsList<T> {
+export default class WordsList<T> {
   private words: { [index: string]: T } = {};
 
   constructor(words?: RawWordsList<T>) {

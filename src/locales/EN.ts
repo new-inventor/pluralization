@@ -1,6 +1,6 @@
-import {Locale} from '../Locale';
+import Locale from '../Locale';
 
-export class EN extends Locale {
+export default class EN extends Locale {
   public readonly rule: Array<(value: number) => boolean> = [
     (value: number): boolean => {
       return value === 1;

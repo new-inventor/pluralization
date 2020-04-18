@@ -1,5 +1,5 @@
-import {Locale} from '../Locale';
-import {WordsList} from '@/WordsList';
+import Locale from '../Locale';
+import WordsList from '../WordsList';
 
 export enum RUModifier {
   NOMINATIVE = 'nominative',
@@ -18,7 +18,7 @@ export interface RUWord {
   cases: { [index: string]: string[] };
 }
 
-export class RU extends Locale {
+export default class RU extends Locale {
   public readonly rule: Array<(value: number) => boolean> = [
     (value: number): boolean => {
       return value % 10 === 1;
