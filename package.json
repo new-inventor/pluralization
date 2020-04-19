@@ -1,7 +1,7 @@
 {
-  "name": "@new-inventor/smart-pluralization",
+  "name": "@new-inventor/pluralization",
   "version": "1.0.0",
-  "description": "Smart pluralisation for russian and english words can be extended by another languages",
+  "description": "Smart pluralisation for words and templates can be extended for any language",
   "keywords": [
     "pluralization",
     "pluralisation",
@@ -14,30 +14,36 @@
     "окончания",
     "word",
     "words",
-    "слово"
+    "слово",
+    "template"
   ],
   "main": "index.js",
   "scripts": {
     "setup": "yarn install",
     "build": "tsc",
-    "clear": "node bin/clear.js",
-    "pack": "npm run eslint:lint && npm run clear && npm run build && node bin/pack_package.js",
+    "clear": "clear",
+    "pack": "npm run eslint:lint && npm run clear && npm run build && npm run copy-files && pack",
+    "copy-files": "copy_files",
+    "release": "npm run eslint:lint && npm run clear && npm run build && npm run copy-files && npm publish lib",
+    "version": "version",
+    "test-some": "echo $var",
     "eslint:lint": "eslint ./src/**",
     "eslint:fix": "eslint --fix ./src/**",
     "eslint:dump": "eslint --print-config ./.eslintrc.json"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/new-inventor/smart_pluralization"
+    "url": "https://github.com/new-inventor/pluralization"
   },
   "author": "George Ionov <newinventor20@gmail.com>",
   "license": "MIT",
   "private": false,
   "bugs": {
-    "url": "https://github.com/new-inventor/smart_pluralization/issues"
+    "url": "https://github.com/new-inventor/pluralization/issues"
   },
-  "homepage": "https://github.com/new-inventor/smart_pluralization#readme",
+  "homepage": "https://github.com/new-inventor/pluralization#readme",
   "dependencies": {
+    "@new-inventor/package_helper": "file:../package_helper",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
@@ -47,6 +53,9 @@
     "eslint": "^6.8.0",
     "rimraf": "^3.0.2",
     "typescript": "^3.8.3"
+  },
+  "optionalDependencies": {
+    "@new-inventor/package_helper": "file:../package_helper"
   },
   "files": [
     "./locales/*",
