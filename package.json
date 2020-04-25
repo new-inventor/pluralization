@@ -1,7 +1,7 @@
 {
   "name": "@new-inventor/pluralization",
   "version": "1.0.1",
-  "description": "Smart pluralisation for words and templates can be extended for any language",
+  "description": "Smart pluralization for words and templates can be extended for any language",
   "keywords": [
     "pluralization",
     "pluralisation",
@@ -42,19 +42,16 @@
   },
   "homepage": "https://github.com/new-inventor/pluralization#readme",
   "dependencies": {
-    "@new-inventor/package_helper": "file:../package_helper",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
+    "@new-inventor/packages-helper": "^1.0.0",
     "@types/lodash": "^4.14.149",
     "@typescript-eslint/eslint-plugin": "^2.28.0",
     "@typescript-eslint/parser": "^2.28.0",
     "eslint": "^6.8.0",
     "rimraf": "^3.0.2",
     "typescript": "^3.8.3"
-  },
-  "optionalDependencies": {
-    "@new-inventor/package_helper": "file:../package_helper"
   },
   "files": [
     "./locales/*",
